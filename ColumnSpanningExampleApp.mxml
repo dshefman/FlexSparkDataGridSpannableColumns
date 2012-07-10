@@ -15,24 +15,24 @@
         {
           var rtn:Array = []
 
-          rtn.push(buildRow("A","A St","A City","A St","00000a"))
+          rtn.push(buildRow("A","A Street","A City","A St","00000a"))
           rtn.push(buildRowWithNameSpan("Spanning All","","","","",4));
-          rtn.push(buildRow("b","b St","b City","b St","00000b"))
-          rtn.push(buildRow("c","c St","c City","c St","00000c"))
-          rtn.push(buildRow("d","d St","d City","d St","00000d"))
+          rtn.push(buildRow("b","b Street","b City","b St","00000b"))
+          rtn.push(buildRow("c","c Street","c City","c St","00000c"))
+          rtn.push(buildRow("d","d Street","d City","d St","00000d"))
           rtn.push(buildRowWithNameSpan("Name Span 2","","e City","e St","00000e",1))
-          rtn.push(buildRow("f","f St","f City","f St","00000f"))
-          rtn.push(buildRowWithCitySpan("g","g St","Span City 2","","00000g",1))
-          rtn.push(buildRow("h","h St","h City","h St","00000h"))
-          rtn.push(buildRow("i","i St","i City","i St","00000i"))
-          rtn.push(buildRow("j","j St","j City","j St","00000j"))
+          rtn.push(buildRow("f","f Street","f City","f St","00000f"))
+          rtn.push(buildRowWithCitySpan("g","g Street","City Span 2","","00000g",1))
+          rtn.push(buildRow("h","h Street","h City","h St","00000h"))
+          rtn.push(buildRow("i","i Street","i City","i St","00000i"))
+          rtn.push(buildRow("j","j Street","j City","j St","00000j"))
           var i:int = String("k").charCodeAt(0)
           var len:int = i + 15;
           var char:String
           for (i ; i< len ; i++ )
           {
               char = String.fromCharCode(i)
-              rtn.push(buildRow(char,char +" St",char +" City",char +" St","00000" + char))
+              rtn.push(buildRow(char,char +" Street",char +" City",char +" St","00000" + char))
           }
           dp = new ArrayCollection(rtn)
         }
