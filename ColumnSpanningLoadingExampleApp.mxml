@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+        creationComplete="creationCompleteHandler(event)"
+        >
+    <fx:Script><![CDATA[
+        import com.squaredi.examples.grids.columnspanning.example1.CellDataVO;
+        import com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingNameVO;
+        import com.squaredi.examples.grids.columnspanning.example1.RowDataVO;
+
+        import mx.collections.ArrayCollection;
+        import mx.controls.Alert;
+        import mx.events.FlexEvent;
+
+        [Bindable]
+        private var dp:ArrayCollection
+
+        private function creationCompleteHandler(event:FlexEvent):void
+        {
+            var rtn:Array = []
+
+            var i:int = String("a").charCodeAt(0)
+            var len:int = i + 20;
+            var char:String
+            for (i; i < len; i++)
+            {
+                char = String.fromCharCode(i)
+                rtn.push(buildRow(char, char + " pm", char + " team"))
+            }
+            dp = new ArrayCollection(rtn)
+        }
+
+        private function buildRow(name:String, pm:String, team:String):LoadingNameVO
+        {
+            var rtn:LoadingNameVO = new LoadingNameVO();
+            rtn.name = name
+            rtn.pm = pm
+            rtn.team = team
+            return rtn;
+        }
+
+        private function button1_clickHandler(event:MouseEvent):void
+        {
+            var rtn:Array = []
+
+            var i:int = String("a").charCodeAt(0)
+            var len:int = i + 20;
+            var char:String;
+            var vo:LoadingNameVO
+            for (i; i < len; i++)
+            {
+                char = String.fromCharCode(i)
+                vo = buildRow(char, char + " pm", char + " team");
+                vo.weeks = {wk1:rndWeekHrs(),
+                            wk2:rndWeekHrs(),
+                            wk3:rndWeekHrs(),
+                            wk4:rndWeekHrs(),
+                            wk5:rndWeekHrs(),
+                            wk6:rndWeekHrs(),
+                            wk7:rndWeekHrs(),
+                            wk8:rndWeekHrs()
+                            }
+                rtn.push(vo)
+            }
+            dp = new ArrayCollection(rtn)
+        }
+
+        private function rndWeekHrs():Number
+        {
+            return Math.round(Math.random()*40)
+        }
+        ]]></fx:Script>
+
+    <fx:Declarations>
+        <s:DateTimeFormatter id="dtf" dateStyle="short" />
+    </fx:Declarations>
+    <s:layout><s:VerticalLayout horizontalAlign="center" gap="15"/></s:layout>
+    <s:Button label="Simulate Loading complete" click="button1_clickHandler(event)" />
+    <s:DataGrid id="grid"
+                width="100%" height="100%"
+                rowHeight="25"
+                dataProvider="{dp}"
+                skinClass="com.squaredi.grids.sparkdatagrid.skins.ColumnSpanningSparkDatagridSkin"
+               >
+                <s:columns>
+                    <s:ArrayList>
+                        <s:GridColumn dataField="name"
+                                      headerText="Name"
+                            />
+                        <s:GridColumn dataField="pm"
+                                      headerText="Project Manager"
+                                />
+                        <s:GridColumn dataField="team"
+                                      headerText="Team"
+                                />
+                        <s:GridColumn headerText="wk1" dataField="weeks.wk1" width="45" itemRenderer="com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingSpanningCellRenderer"/>
+                        <s:GridColumn headerText="wk2" dataField="weeks.wk2" width="45" itemRenderer="com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingSpanningCellRenderer"/>
+                        <s:GridColumn headerText="wk3" dataField="weeks.wk3" width="45" itemRenderer="com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingSpanningCellRenderer"/>
+                        <s:GridColumn headerText="wk4" dataField="weeks.wk4" width="45" itemRenderer="com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingSpanningCellRenderer"/>
+                        <s:GridColumn headerText="wk5" dataField="weeks.wk5" width="45" itemRenderer="com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingSpanningCellRenderer"/>
+                        <s:GridColumn headerText="wk6" dataField="weeks.wk6" width="45" itemRenderer="com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingSpanningCellRenderer"/>
+                        <s:GridColumn headerText="wk7" dataField="weeks.wk7" width="45" itemRenderer="com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingSpanningCellRenderer"/>
+                        <s:GridColumn headerText="wk8" dataField="weeks.wk8" width="45" itemRenderer="com.squaredi.examples.grids.columnspanning.exampleLoading.LoadingSpanningCellRenderer"/>
+
+                        <s:GridColumn headerText="Last Updated"
+                                 dataField="lastUpdated"
+                                 formatter="{dtf}"
+                                />
+
+                    </s:ArrayList>
+                </s:columns>
+
+               </s:DataGrid>
+</s:Application>

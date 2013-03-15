@@ -1,6 +1,6 @@
-package com.squaredi.examples.grids.columnspanning
+package com.squaredi.examples.grids.columnspanning.example1
 {
-    import com.squaredi.grids.sparkdatagrid.renderers.ISpannableGridItemRenderer;
+    import com.squaredi.grids.sparkdatagrid.columnSpanning.renderers.ISpannableGridItemRenderer;
 
     import mx.core.UIComponent;
 

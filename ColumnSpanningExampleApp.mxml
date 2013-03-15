@@ -3,65 +3,66 @@
         creationComplete="creationCompleteHandler(event)"
         >
     <fx:Script><![CDATA[
-        import com.squaredi.examples.grids.columnspanning.CellDataVO;
-        import com.squaredi.examples.grids.columnspanning.RowDataVO;
+        import com.squaredi.examples.grids.columnspanning.example1.CellDataVO;
+        import com.squaredi.examples.grids.columnspanning.example1.RowDataVO;
 
         import mx.collections.ArrayCollection;
         import mx.controls.Alert;
         import mx.events.FlexEvent;
 
-        [Bindable] private var dp:ArrayCollection
-        private function creationCompleteHandler( event:FlexEvent ):void
-        {
-          var rtn:Array = []
+        [Bindable]
+        private var dp:ArrayCollection
 
-          rtn.push(buildRow("A","A Street","A City","A St","00000a"))
-          rtn.push(buildRowWithNameSpan("Spanning All","","","","",4));
-          rtn.push(buildRow("b","b Street","b City","b St","00000b"))
-          rtn.push(buildRow("c","c Street","c City","c St","00000c"))
-          rtn.push(buildRow("d","d Street","d City","d St","00000d"))
-          rtn.push(buildRowWithNameSpan("Name Span 2","","e City","e St","00000e",1))
-          rtn.push(buildRow("f","f Street","f City","f St","00000f"))
-          rtn.push(buildRowWithCitySpan("g","g Street","City Span 2","","00000g",1))
-          rtn.push(buildRow("h","h Street","h City","h St","00000h"))
-          rtn.push(buildRow("i","i Street","i City","i St","00000i"))
-          rtn.push(buildRow("j","j Street","j City","j St","00000j"))
-          var i:int = String("k").charCodeAt(0)
-          var len:int = i + 15;
-          var char:String
-          for (i ; i< len ; i++ )
-          {
-              char = String.fromCharCode(i)
-              rtn.push(buildRow(char,char +" Street",char +" City",char +" St","00000" + char))
-          }
-          dp = new ArrayCollection(rtn)
+        private function creationCompleteHandler(event:FlexEvent):void
+        {
+            var rtn:Array = []
+
+            rtn.push(buildRow("A", "A Street", "A City", "A St", "00000a"))
+            rtn.push(buildRowWithNameSpan("Spanning All", "", "", "", "", 4));
+            rtn.push(buildRow("b", "b Street", "b City", "b St", "00000b"))
+            rtn.push(buildRow("c", "c Street", "c City", "c St", "00000c"))
+            rtn.push(buildRow("d", "d Street", "d City", "d St", "00000d"))
+            rtn.push(buildRowWithNameSpan("Name Span 2", "", "e City", "e St", "00000e", 1))
+            rtn.push(buildRow("f", "f Street", "f City", "f St", "00000f"))
+            rtn.push(buildRowWithCitySpan("g", "g Street", "City Span 2", "", "00000g", 1))
+            rtn.push(buildRow("h", "h Street", "h City", "h St", "00000h"))
+            rtn.push(buildRow("i", "i Street", "i City", "i St", "00000i"))
+            rtn.push(buildRow("j", "j Street", "j City", "j St", "00000j"))
+            var i:int = String("k").charCodeAt(0)
+            var len:int = i + 15;
+            var char:String
+            for (i; i < len; i++)
+            {
+                char = String.fromCharCode(i)
+                rtn.push(buildRow(char, char + " Street", char + " City", char + " St", "00000" + char))
+            }
+            dp = new ArrayCollection(rtn)
         }
 
-        private function buildRow(name:String,  address:String, city:String, st:String,  zip:String ):RowDataVO
+        private function buildRow(name:String, address:String, city:String, st:String, zip:String):RowDataVO
         {
             var rtn:RowDataVO = new RowDataVO();
-            rtn.name = new CellDataVO(0,name)
-            rtn.address = new CellDataVO(0,address)
-            rtn.city = new CellDataVO(0,city)
-            rtn.st = new CellDataVO(0,st)
-            rtn.zip = new CellDataVO(0,zip)
+            rtn.name = new CellDataVO(0, name)
+            rtn.address = new CellDataVO(0, address)
+            rtn.city = new CellDataVO(0, city)
+            rtn.st = new CellDataVO(0, st)
+            rtn.zip = new CellDataVO(0, zip)
             return rtn;
         }
 
-        private function buildRowWithNameSpan(name:String,  address:String, city:String, st:String,  zip:String, colspan:int =0 ):RowDataVO
+        private function buildRowWithNameSpan(name:String, address:String, city:String, st:String, zip:String, colspan:int = 0):RowDataVO
         {
             var rtn:RowDataVO = buildRow(name, address, city, st, zip);
             rtn.spanName(colspan)
             return rtn;
         }
 
-        private function buildRowWithCitySpan(name:String,  address:String, city:String, st:String,  zip:String, colspan:int =0 ):RowDataVO
+        private function buildRowWithCitySpan(name:String, address:String, city:String, st:String, zip:String, colspan:int = 0):RowDataVO
         {
             var rtn:RowDataVO = buildRow(name, address, city, st, zip);
             rtn.spanCity(colspan)
             return rtn;
         }
-
         ]]></fx:Script>
     <s:DataGrid id="grid"
                 width="100%" height="100%"
@@ -72,19 +73,19 @@
                 <s:columns>
                     <s:ArrayList>
                         <s:GridColumn dataField="name"
-                                     itemRenderer="com.squaredi.examples.grids.columnspanning.ExampleSpanningCellRenderer"
+                                     itemRenderer="com.squaredi.examples.grids.columnspanning.example1.ExampleSpanningCellRenderer"
                             />
                         <s:GridColumn dataField="address"
-                                      itemRenderer="com.squaredi.examples.grids.columnspanning.ExampleSpanningCellRenderer"
+                                      itemRenderer="com.squaredi.examples.grids.columnspanning.example1.ExampleSpanningCellRenderer"
                                 />
                         <s:GridColumn dataField="city"
-                                      itemRenderer="com.squaredi.examples.grids.columnspanning.ExampleSpanningCellRenderer"
+                                      itemRenderer="com.squaredi.examples.grids.columnspanning.example1.ExampleSpanningCellRenderer"
                                 />
                         <s:GridColumn dataField="st"
-                                      itemRenderer="com.squaredi.examples.grids.columnspanning.ExampleSpanningCellRenderer"
+                                      itemRenderer="com.squaredi.examples.grids.columnspanning.example1.ExampleSpanningCellRenderer"
                                 />
                         <s:GridColumn dataField="zip"
-                                      itemRenderer="com.squaredi.examples.grids.columnspanning.ExampleSpanningCellRenderer"
+                                      itemRenderer="com.squaredi.examples.grids.columnspanning.example1.ExampleSpanningCellRenderer"
                                 />
                     </s:ArrayList>
                 </s:columns>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spanning:ColumnSpanningGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					xmlns:s="library://ns.adobe.com/flex/spark" 
+					xmlns:mx="library://ns.adobe.com/flex/mx"
+					xmlns:spanning="com.squaredi.grids.sparkdatagrid.columnSpanning.renderers.*"
+					width="100%" height="100%"
+					clipAndEnableScrolling="true"
+					preinitialize="preinitializeHandler(event)"
+					>
+	<fx:Script>
+        <![CDATA[
+        import com.squaredi.examples.grids.columnspanning.*;
+
+        import mx.events.FlexEvent;
+
+        [Bindable]
+        public var vo:LoadingNameVO;
+
+        public override function prepare( hasBeenRecycled:Boolean ):void
+        {
+
+            super.prepare(hasBeenRecycled);
+
+            if (data)
+            {
+                vo = LoadingNameVO(data)
+            }
+            else
+            {
+                vo = null
+            }
+
+
+
+        }
+
+        private function preinitializeHandler( event:FlexEvent ):void
+        {
+            spannableItemRendererAccessor = new LoadingSpannableItemRendererImpl(loadingLabel)
+        }
+        ]]>
+    </fx:Script>
+	<s:SkinnableContainer id="rowRenderer"
+						  top="0" bottom="0"
+						  left="0" right="0"
+                          visible="{!isExpanded}"
+						  >
+		<s:Rect id="bgColor"
+				top="0" bottom="0"
+				left="0" right="0"
+				>
+			<s:fill>
+				<s:RadialGradient>
+					<s:GradientEntry color="#FFFFFF" alpha = ".5"/>
+					<s:GradientEntry color="#FF0000" alpha=".5" />
+				</s:RadialGradient>
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke color="#00FF00" alpha=".33" />
+			</s:stroke>
+		</s:Rect>
+		<s:Label id="labelTxt" text="{label}" verticalCenter="0"
+                left="0" right="0"
+                textAlign="center"
+                />
+	</s:SkinnableContainer>
+    <s:BorderContainer id="loadingLabel"
+                       backgroundColor="#CCCCCC" alpha=".50"
+                       borderAlpha="0"
+                       visible="{isExpanded}"
+            >
+        <s:Label width="100%"
+                 text="Loading Allocation for {vo.name}..."
+                 textAlign="center"
+                 verticalCenter="0"
+                 fontSize="12"
+
+                />
+    </s:BorderContainer>
+
+</spanning:ColumnSpanningGridItemRenderer>

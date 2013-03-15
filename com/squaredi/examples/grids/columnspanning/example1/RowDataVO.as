@@ -2,7 +2,7 @@
  * User: Drew
  * Date: 7/9/12
  */
-package com.squaredi.examples.grids.columnspanning
+package com.squaredi.examples.grids.columnspanning.example1
 {
     [Bindable]
     public class RowDataVO

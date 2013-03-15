@@ -1,4 +1,4 @@
-package com.squaredi.grids.sparkdatagrid.renderers
+package com.squaredi.grids.sparkdatagrid.columnSpanning.renderers
 {
 	import mx.core.UIComponent;
 
